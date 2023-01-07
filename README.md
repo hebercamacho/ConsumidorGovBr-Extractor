@@ -3,6 +3,27 @@ Extrator de reclamações do site consumidor.gov.br via Web Scraping (raspa tela
 
 >Autoria: Héber Camacho Desterro
 
+- [ConsumidorGovBr-Extractor](#consumidorgovbr-extractor)
+  - [Objetivo](#objetivo)
+  - [Como utilizar](#como-utilizar)
+    - [Parâmetros](#parâmetros)
+      - [palavrasChave (list of str)](#palavraschave-list-of-str)
+      - [numero\_maximo\_resultados (int)](#numero_maximo_resultados-int)
+      - [segmentoMercado (int or str)](#segmentomercado-int-or-str)
+      - [fornecedor (str)](#fornecedor-str)
+      - [regiao (int or str)](#regiao-int-or-str)
+      - [uf (int or str)](#uf-int-or-str)
+      - [cidade (int or str)](#cidade-int-or-str)
+      - [area (str)](#area-str)
+      - [assunto (str)](#assunto-str)
+      - [problema (str)](#problema-str)
+      - [dataInicio (str)](#datainicio-str)
+      - [dataTermino (str)](#datatermino-str)
+      - [avaliacao (int or str)](#avaliacao-int-or-str)
+      - [nota (int or str)](#nota-int-or-str)
+  - [Performance](#performance)
+
+
 ## Objetivo
 Extrair dados estruturados das reclamações do site consumidor.gov.br, em formato .csv e .xlsx, com diversos filtros disponíveis.
 
@@ -10,12 +31,14 @@ Extrair dados estruturados das reclamações do site consumidor.gov.br, em forma
 1. Abra o arquivo ExtrairConsumidorGovBr.ipynb utilizando o Google Colab, Jupyter Notebook ou IDE de sua preferência
 2. Na célula ``Definição dos parâmetros de busca``, defina os filtros que quer utilizar, como a lista de palavras-chave. Veja as opções na seção [Parâmetros](#parâmetros).
 3. Execute todas as células em ordem, aguarde a execução do algoritmo de busca. Um arquivo .xlsx e um arquivo .csv com o resultado serão salvos automaticamente no diretório de execução .
-> O nome do arquivo será no formato: ReclamacoesConsumidor-{Numero de Resultados}-{Lista de Palavras-chave}. Exemplo: ReclamacoesConsumidor-10-atendimento_reclamacao.csv
+> O nome dos arquivos será no formato: ReclamacoesConsumidor-{Numero de Resultados}-{Lista de Palavras-chave}. 
+> 
+> Exemplo: ReclamacoesConsumidor-10-atendimento_reclamacao.csv
 
-## Parâmetros (WIP)
+### Parâmetros
 Cada parâmetro passado no início da execução será utilizado como um filtro da busca. Veja a seguir como utilizar cada um deles.
 
-### palavrasChave (list of str)
+#### palavrasChave (list of str)
 Uma lista de strings contendo cada palavra que será utilizada na busca por resultados.  
 As palavras são buscadas nos campos Relato, Resposta e Avaliação.  
 Recomenda-se colocar cada palavra separadamente em uma string, pois o algoritmo é executado mais rapidamente e não há diferença no resultado final para palavras colocadas juntas (exceto pela ordenação).  
@@ -45,7 +68,7 @@ Para não utilizar esse filtro, mantenha da seguinte maneira:
 palavrasChave=['']
 ```
 
-### numero_maximo_resultados (int)
+#### numero_maximo_resultados (int)
 O número máximo de resultados que serão retornados na base. None ou 0 retornarão todos os resultados encontrados.  
 **Importante: precisa ser um número inteiro positivo múltiplo de 10. Ex: 0, 10, 20, 1000...**
 
@@ -57,7 +80,7 @@ numero_maximo_resultados=5     # Gera Exception, precisa ser múltiplo de 10
 numero_maximo_resultados=100   # Limitar a 100 resultados
 ```
 
-### segmentoMercado (int or str)
+#### segmentoMercado (int or str)
 O ID do segmento de mercado das empresas.  
 
 Exemplo:  
@@ -115,7 +138,7 @@ Lista de IDs atual:
 | 19   | Vestuário, Calçados e Acessórios                                        |
 | 15   | Viagens, Turismo e Hospedagem                                           |
 
-### fornecedor (str)
+#### fornecedor (str)
 Nome da empresa. 
 **Importante o nome ser exatamente igual ao da lista a seguir.**
 
@@ -1405,36 +1428,36 @@ Lista de empresas atual:
 | Zurich Seguros                                                                                    |
 | Zurich Vida e Previdência                                                                         |
 
-### regiao (int or str)
+#### regiao (int or str)
 ID da região de origem da reclamação.
 
-### uf (int or str)
+#### uf (int or str)
 ID do estado de origem da reclamação.
 
-### cidade (int or str)
+#### cidade (int or str)
 ID da cidade de origem da reclamação.
 
-### area (str)
+#### area (str)
 Área de atuação da empresa.  
 ==NOT WORKING==
 
-### assunto (str)
+#### assunto (str)
 Assunto, ou seja, produto ou serviço origem do problema.  
 ==NOT WORKING==
 
-### problema (str)
+#### problema (str)
 Categorização do problema.  
 ==NOT WORKING==
 
-### dataInicio (str)
+#### dataInicio (str)
 Data inicial do período de busca. A data refere-se à resposta da empresa.  
 Formato dd/MM/yyyy.
 
-### dataTermino (str)
+#### dataTermino (str)
 Data final do período de busca. A data refere-se à resposta da empresa.  
 Formato dd/MM/yyyy.
 
-### avaliacao (int or str)
+#### avaliacao (int or str)
 ID da avaliação do cliente, quanto à resolução dada pela empresa para o problema relatado.
 
 | ID  | Avaliação do cliente |
@@ -1443,7 +1466,7 @@ ID da avaliação do cliente, quanto à resolução dada pela empresa para o pro
 | 2   | Não Resolvida        |
 | 3   | Não Avaliada         |
 
-### nota (int or str)
+#### nota (int or str)
 Nota de 1 a 5 dada pelo cliente à resposta da empresa.
 
 ## Performance
